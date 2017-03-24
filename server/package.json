@@ -1,0 +1,28 @@
+{
+  "name": "stock-api-mock",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb-base": "^11.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "express": "^4.15.2",
+    "moment": "^2.18.1",
+    "superagent": "^3.5.1",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
