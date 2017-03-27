@@ -2,26 +2,30 @@ import { observable, action } from 'mobx'
 import axios from 'axios'
 
 class AppState {
-  @observable authenticated
-  @observable authenticating
-  @observable items
-  @observable item
+  @observable authenticated = false;
+  @observable authenticating = false;
+  @observable items = [];
+  @observable item = {};
 
-  constructor() {
-    this.authenticated = false
-    this.authenticating = false
-    this.items = []
-    this.item = {}
-  }
+  // constructor() {
+  //   this.authenticated = false
+  //   this.authenticating = false
+  //   this.items = []
+  //   this.item = {}
+  // }
 
   async fetchData(pathname, id) {
     const APIURL = 'http://localhost:3000/';
     // let {data} = await axios.get(`https://jsonplaceholder.typicode.com${pathname}`)
     let {data} = await axios.get(APIURL)
-    console.log(data)
     // data = data.results;
-    
-    data.length > 0 ? this.setData(data) : this.setSingle(data)
+
+    // data.length > 0 ? this.setData(data) : this.setSingle(data)
+    this.setOrders(data || []);
+  }
+
+  @action setOrders(data) {
+    this.items = [].concat(data);
   }
 
   @action setData(data) {
@@ -47,7 +51,7 @@ class AppState {
         }, 0)
     })
   }
-  
+
 }
 
 export default AppState;

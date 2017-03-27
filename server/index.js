@@ -5,7 +5,7 @@ const utils = require('./utils');
 
 const CHANGE_PERIOD = 50;
 const { createOptionOrdersPool, createOptionOrder } = option;
-const ordersPool = createOptionOrdersPool();
+const ordersPool = createOptionOrdersPool(1000);
 
 let timer = setTimeout(function intervalFn() {
   const i = utils.rndInt(ordersPool.length);
