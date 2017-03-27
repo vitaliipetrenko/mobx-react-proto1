@@ -2,7 +2,12 @@ import React, { Component, PropTypes, PureComponent } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Match, Link } from 'react-router-dom'
 
+import Protected from './Protected'
+import DataWrapper from './DataWrapper'
+
 import { defaultCellRangeRenderer, Grid } from 'react-virtualized'
+
+import 'react-virtualized/styles.css'
 
 const list = [
   ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
@@ -24,13 +29,13 @@ const cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
     >
       {list[rowIndex][columnIndex]}
     </div>
-  )  
+  )
 }
 
 const CustomizedGrid = (props) => {
   return (
     <Grid
-			cellRenderer={cellRenderer}
+			cellRenderer={props.cellRenderer}
 			columnCount={list[0].length}
 			columnWidth={100}
 			height={300}
@@ -41,35 +46,50 @@ const CustomizedGrid = (props) => {
   )
 }
 
-import Protected from './Protected'
-import DataWrapper from './DataWrapper'
-
-import 'react-virtualized/styles.css'
-
-@DataWrapper @observer @inject("store")
+@DataWrapper
 export default class Subpage extends Component {
-	constructor(props) {
-		super(props)
-		this.store = this.props.store
-	}
+  static propTypes = {
+    store: PropTypes.shape({
+      items: PropTypes.object
+    })
+  };
+
+  cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
+    const {items} = this.props.store;
+    const rowItem = items[rowIndex];
+    const keys = Object.keys(rowItem);
+    console.log(rowItem[keys[columnIndex]]);
+    return <span key={key} style={style}>{rowItem[keys[columnIndex]]}</span>
+  };
+
 	render() {
+    const {items} = this.props.store;
+
 		return (
 			<div className="page posts">
 				<h1>Grid</h1>
 				<hr />
-				<CustomizedGrid />
+				{/* <CustomizedGrid cellRenderer={cellRenderer} /> */}
+        {items.length && <Grid
+          cellRenderer={this.cellRenderer}
+          columnCount={Object.keys(items[0]).length}
+          columnWidth={100}
+          height={300}
+          rowCount={items.length}
+          rowHeight={30}
+          width={900}
+        />}
 				<ul>
-					{this.store.items && this.store.items.length ? this.store.items.map((post, key) => {
-						console.log('post: ', post);
-						return <li key={key}>
-						<h4>Ticker: {post.ticker}</h4>
-						<p>Expiration Date: {post.expirationDate}</p>
-						<p>Option Type: {post.optionType}</p>
-						<p>Order Type: {post.orderType}</p>
-						<p>Price: {post.price}</p>
-						<p>Strike: {post.strike}</p>
-						<p>Volume: {post.volume}</p>
-						</li>
+					{this.props.store.items && this.props.store.items.length ? this.props.store.items.map((post, key) => {
+            return <li key={key}>
+              <h4>Ticker: {post.ticker}</h4>
+              <p>Expiration Date: {post.expirationDate}</p>
+              <p>Option Type: {post.optionType}</p>
+              <p>Order Type: {post.orderType}</p>
+              <p>Price: {post.price}</p>
+              <p>Strike: {post.strike}</p>
+              <p>Volume: {post.volume}</p>
+            </li>
 					}) : 'Loading...'}
 				</ul>
 			</div>

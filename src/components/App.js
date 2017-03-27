@@ -14,7 +14,7 @@ export default class App extends Component {
 	}
 	componentDidMount() {
 		this.authenticate()
-		
+
 	}
 	authenticate(e) {
 		if (e) e.preventDefault();
@@ -26,25 +26,25 @@ export default class App extends Component {
 			<Router>
 				<Provider store={this.store}>
 					<div className="wrapper">
-						{/*<DevTools />*/}
+						{/* <DevTools /> */}
 						<TopBar />
 
-						<Route 
+						<Route
 						  exact
 						  path="/"
 						  render={(props) => <LazyRoute {...props} component={import('./Home')} />}
 						/>
-						<Route 
+						<Route
 						  exact
 						  path="/posts"
 						  render={(props) => <LazyRoute {...props} component={import('./Subpage')} />}
 						/>
-						<Route 
+						<Route
 						  exact
 						  path="/posts/:id"
 						  render={(props) => <LazyRoute {...props} component={import('./Subitem')} />}
 						/>
-						<Route 
+						<Route
 						  exact
 						  path="/login"
 						  render={(props) => <LazyRoute {...props} component={import('./Login')} />}

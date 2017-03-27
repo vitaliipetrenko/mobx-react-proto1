@@ -10,7 +10,7 @@ export default class Subitem extends Component {
 	constructor(props) {
 		super(props)
 		this.store = this.props.store;
-		
+
 	}
 	render() {
 		console.log('props: ', this.props);
