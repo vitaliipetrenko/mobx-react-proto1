@@ -5,46 +5,9 @@ import { Match, Link } from 'react-router-dom'
 import Protected from './Protected'
 import DataWrapper from './DataWrapper'
 
-import { defaultCellRangeRenderer, Grid } from 'react-virtualized'
+import { defaultCellRangeRenderer, Grid, AutoSizer } from 'react-virtualized'
 
 import 'react-virtualized/styles.css'
-
-const list = [
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125]
-  // And so on...
-];
-
-const cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
-	console.log('columnIndex, key, rowIndex, style',columnIndex, key, rowIndex, style)
-  return (
-    <div
-      key={key}
-      style={style}
-    >
-      {list[rowIndex][columnIndex]}
-    </div>
-  )
-}
-
-const CustomizedGrid = (props) => {
-  return (
-    <Grid
-			cellRenderer={props.cellRenderer}
-			columnCount={list[0].length}
-			columnWidth={100}
-			height={300}
-			rowCount={list.length}
-			rowHeight={30}
-			width={900}
-		/>
-  )
-}
 
 @DataWrapper
 export default class Subpage extends Component {
@@ -58,9 +21,28 @@ export default class Subpage extends Component {
     const {items} = this.props.store;
     const rowItem = items[rowIndex];
     const keys = Object.keys(rowItem);
-    console.log(rowItem[keys[columnIndex]]);
+    // console.log(rowItem[keys[columnIndex]]);
     return <span key={key} style={style}>{rowItem[keys[columnIndex]]}</span>
   };
+
+  _getColumnWidth = ({ index }) => {
+    switch (index) {
+      case 0:
+        return 310
+      case 1:
+        return 100
+      case 2:
+        return 100
+      case 3:
+        return 100
+      default:
+        return 70
+    }
+  }
+  onRend = (props) =>{
+    console.log('rowOverscanStopIndex :', props.rowOverscanStopIndex);
+    
+  }
 
 	render() {
     const {items} = this.props.store;
@@ -69,29 +51,24 @@ export default class Subpage extends Component {
 			<div className="page posts">
 				<h1>Grid</h1>
 				<hr />
-				{/* <CustomizedGrid cellRenderer={cellRenderer} /> */}
-        {items.length && <Grid
-          cellRenderer={this.cellRenderer}
-          columnCount={Object.keys(items[0]).length}
-          columnWidth={100}
-          height={300}
-          rowCount={items.length}
-          rowHeight={30}
-          width={900}
-        />}
-				<ul>
-					{this.props.store.items && this.props.store.items.length ? this.props.store.items.map((post, key) => {
-            return <li key={key}>
-              <h4>Ticker: {post.ticker}</h4>
-              <p>Expiration Date: {post.expirationDate}</p>
-              <p>Option Type: {post.optionType}</p>
-              <p>Order Type: {post.orderType}</p>
-              <p>Price: {post.price}</p>
-              <p>Strike: {post.strike}</p>
-              <p>Volume: {post.volume}</p>
-            </li>
-					}) : 'Loading...'}
-				</ul>
+				 {/*<CustomizedGrid cellRenderer={cellRenderer} /> */}
+        {items.length && 
+          <AutoSizer>
+            {({ width, height }) => (
+              <Grid
+                onSectionRendered={this.onRend}
+                cellRenderer={this.cellRenderer}
+                columnCount={Object.keys(items[0]).length}
+                columnWidth={this._getColumnWidth}
+                height={height}
+                rowCount={items.length}
+                rowHeight={30}
+                width={width}
+              />
+            )}
+        </AutoSizer>
+      }
+
 			</div>
 		)
 	}

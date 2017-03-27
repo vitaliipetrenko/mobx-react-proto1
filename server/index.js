@@ -5,14 +5,15 @@ const utils = require('./utils');
 
 const CHANGE_PERIOD = 50;
 const { createOptionOrdersPool, createOptionOrder } = option;
-const ordersPool = createOptionOrdersPool(1000);
 
-let timer = setTimeout(function intervalFn() {
-  const i = utils.rndInt(ordersPool.length);
-  ordersPool[i] = createOptionOrder();
+const ordersPool = createOptionOrdersPool(10000);
 
-  timer = setTimeout(intervalFn, CHANGE_PERIOD);
-}, CHANGE_PERIOD);
+// let timer = setTimeout(function intervalFn() {
+//   const i = utils.rndInt(ordersPool.length);
+//   ordersPool[i] = createOptionOrder();
+
+//   timer = setTimeout(intervalFn, CHANGE_PERIOD);
+// }, CHANGE_PERIOD);
 
 const app = express();
 
@@ -24,7 +25,13 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   const { offset = 0, limit = 100 } = req.query;
-  const data = ordersPool.slice(offset, offset + limit);
+  // console.log(limit);
+  // console.log(createOptionOrdersPool(limit));
+  
+  const data = ordersPool.slice((+offset), (+offset) + (+limit));
+
+  // const ordersPool = createOptionOrdersPool(+limit);
+  // const data = ordersPool;
 
   res.send(data);
 });
