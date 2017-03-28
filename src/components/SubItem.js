@@ -13,7 +13,6 @@ export default class Subitem extends Component {
 
 	}
 	render() {
-		console.log('props: ', this.props);
 		return (
 			<div className="page post">
 				<Link to="/posts">&larr; Back to Posts</Link>

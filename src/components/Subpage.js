@@ -1,5 +1,6 @@
 import React, { Component, PropTypes, PureComponent } from 'react'
 import { inject, observer } from 'mobx-react'
+import {computed} from 'mobx';
 import { Match, Link } from 'react-router-dom'
 
 import Protected from './Protected'
@@ -20,33 +21,19 @@ const list = [
   // And so on...
 ];
 
-const cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
-	console.log('columnIndex, key, rowIndex, style',columnIndex, key, rowIndex, style)
-  return (
-    <div
-      key={key}
-      style={style}
-    >
-      {list[rowIndex][columnIndex]}
-    </div>
-  )
-}
-
-const CustomizedGrid = (props) => {
-  return (
-    <Grid
-			cellRenderer={props.cellRenderer}
-			columnCount={list[0].length}
-			columnWidth={100}
-			height={300}
-			rowCount={list.length}
-			rowHeight={30}
-			width={900}
-		/>
-  )
-}
+// const cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
+//   return (
+//     <div
+//       key={key}
+//       style={style}
+//     >
+//       {list[rowIndex][columnIndex]}
+//     </div>
+//   )
+// }
 
 @DataWrapper
+@observer
 export default class Subpage extends Component {
   static propTypes = {
     store: PropTypes.shape({
@@ -54,24 +41,25 @@ export default class Subpage extends Component {
     })
   };
 
-  cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
-    const {items} = this.props.store;
+  cellRenderer = (items) => ({ columnIndex, key, rowIndex, style }) => {
     const rowItem = items[rowIndex];
     const keys = Object.keys(rowItem);
-    console.log(rowItem[keys[columnIndex]]);
+
+    // console.log('rerender row');
+
     return <span key={key} style={style}>{rowItem[keys[columnIndex]]}</span>
   };
 
 	render() {
     const {items} = this.props.store;
-
+    // console.log('subpage render');
 		return (
 			<div className="page posts">
 				<h1>Grid</h1>
 				<hr />
 				{/* <CustomizedGrid cellRenderer={cellRenderer} /> */}
         {items.length && <Grid
-          cellRenderer={this.cellRenderer}
+          cellRenderer={this.cellRenderer(items)}
           columnCount={Object.keys(items[0]).length}
           columnWidth={100}
           height={300}
@@ -79,19 +67,6 @@ export default class Subpage extends Component {
           rowHeight={30}
           width={900}
         />}
-				<ul>
-					{this.props.store.items && this.props.store.items.length ? this.props.store.items.map((post, key) => {
-            return <li key={key}>
-              <h4>Ticker: {post.ticker}</h4>
-              <p>Expiration Date: {post.expirationDate}</p>
-              <p>Option Type: {post.optionType}</p>
-              <p>Order Type: {post.orderType}</p>
-              <p>Price: {post.price}</p>
-              <p>Strike: {post.strike}</p>
-              <p>Volume: {post.volume}</p>
-            </li>
-					}) : 'Loading...'}
-				</ul>
 			</div>
 		)
 	}
