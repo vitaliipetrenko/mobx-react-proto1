@@ -1,20 +1,22 @@
 // const request = require('superagent');
 const express = require('express');
 const option = require('./option');
-const createChartPool = require('./chart');
+const { createChartPool, modifyChartPool } = require('./chart');
 const utils = require('./utils');
 
 const CHANGE_PERIOD = 50;
 const { createOptionOrdersPool, createOptionOrder, modifyOptionOrdersPool } = option;
 let ordersPool = createOptionOrdersPool(1000);
+let chartPool = createChartPool();
 
 let timer = setTimeout(function intervalFn() {
   // const i = utils.rndInt(ordersPool.length);
   // ordersPool[i] = createOptionOrder();
   ordersPool = modifyOptionOrdersPool(ordersPool);
+  chartPool = modifyChartPool(ordersPool);
   timer = setTimeout(intervalFn, CHANGE_PERIOD);
 }, 250);
-const chartPool = createChartPool();
+
 
 // let timer = setTimeout(function intervalFn() {
 //   const i = utils.rndInt(ordersPool.length);

@@ -23,4 +23,10 @@ function createChartPool () {
   return data;
 }
 
-module.exports = createChartPool
+function modifyChartPool (pool, p = 0.4) {
+  return pool.map(el => (Math.random() < p ? createChartPool() : el));
+}
+module.exports = {
+  createChartPool,
+  modifyChartPool
+};

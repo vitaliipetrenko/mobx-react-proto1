@@ -1,6 +1,5 @@
 import { observable, action, runInAction } from 'mobx'
 import axios from 'axios'
-import OrderModel from '../models/OrderModel';
 
 class AppState {
   @observable authenticated = false;
