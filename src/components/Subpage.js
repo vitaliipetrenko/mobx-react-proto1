@@ -5,6 +5,7 @@ import { Match, Link } from 'react-router-dom'
 
 import Protected from './Protected'
 import DataWrapper from './DataWrapper'
+import MyChart from './chart'
 
 import { defaultCellRangeRenderer, Grid, AutoSizer } from 'react-virtualized'
 
@@ -15,7 +16,8 @@ import 'react-virtualized/styles.css'
 export default class Subpage extends Component {
   static propTypes = {
     store: PropTypes.shape({
-      items: PropTypes.object
+      items: PropTypes.object,
+      chartData: PropTypes.object
     })
   };
 
@@ -46,10 +48,12 @@ export default class Subpage extends Component {
   }
 
 	render() {
-    const {items} = this.props.store;
     // console.log('subpage render');
+    const {items, chartData} = this.props.store;
 		return (
 			<div className="page posts">
+        <h1>Chart</h1>
+          <MyChart chartData={chartData}/>
 				<h1>Grid</h1>
 				<hr />
         {items.length &&

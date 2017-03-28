@@ -5,6 +5,7 @@ class AppState {
   @observable authenticated = false;
   @observable authenticating = false;
   @observable items = [];
+  @observable chartData = [];
   @observable item = {};
 
   // constructor() {
@@ -28,6 +29,16 @@ class AppState {
     this.setOrders(data || []);
 
     next();
+  }
+
+  async fetchChartData() {
+    const APIURL = 'http://localhost:3000/chart';
+
+    let {data} = await axios.get(APIURL)
+    data.map((el) => {
+      el.data = new Date(el.data)
+    })
+    this.setChartData(data || []);
   }
 
   async fetchNextData(pathname, id) {
@@ -55,6 +66,9 @@ class AppState {
     // this.items = data.map(item => new OrderModel(item));
     this.items.replace(data);
   }
+  @action setChartData(data) {
+    this.chartData = [].concat(data);
+  }
 
   @action setData(data) {
     this.items = data
@@ -65,6 +79,7 @@ class AppState {
   }
 
   @action clearItems() {
+    this.chartData = []
     this.items = []
     this.item = {}
   }

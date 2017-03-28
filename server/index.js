@@ -1,6 +1,7 @@
 // const request = require('superagent');
 const express = require('express');
 const option = require('./option');
+const createChartPool = require('./chart');
 const utils = require('./utils');
 
 const CHANGE_PERIOD = 50;
@@ -13,6 +14,14 @@ let timer = setTimeout(function intervalFn() {
   ordersPool = modifyOptionOrdersPool(ordersPool);
   timer = setTimeout(intervalFn, CHANGE_PERIOD);
 }, 250);
+
+
+// let timer = setTimeout(function intervalFn() {
+//   const i = utils.rndInt(ordersPool.length);
+//   ordersPool[i] = createOptionOrder();
+
+//   timer = setTimeout(intervalFn, CHANGE_PERIOD);
+// }, CHANGE_PERIOD);
 
 const app = express();
 
@@ -28,6 +37,12 @@ app.get('/', (req, res) => {
   limit = parseInt(limit, 10) || 200;
 
   const data = ordersPool.slice(offset, offset + limit);
+
+  res.send(data);
+});
+
+app.get('/chart', (req, res) => {
+  const data = createChartPool();
 
   res.send(data);
 });
