@@ -27,6 +27,8 @@ function createOptionOrder(ticker = tickers[rndInt(tickers.length)], stockPrice 
 
 function createOptionOrdersPool(l = 200) {
   const pool = Array.from(Array(l));
+  console.log('pool: ', pool);
+  
 
   return pool.map(() => createOptionOrder());
 }
