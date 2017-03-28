@@ -12,12 +12,12 @@ let { XAxis, YAxis } = axes;
 let { fitWidth } = helper;
 
 @observer
-class MyChart extends Component {
+class CandleChart extends Component {
   render() {
     const chartData = mobx.toJS(this.props.chartData)
     if (chartData[chartData.length - 1]) {
       return (
-        <ChartCanvas ratio={1} width={1200} height={800}
+        <ChartCanvas ratio={1} width={950} height={300}
             margin={{ left: 50, right: 50, top:10, bottom: 30 }} type="hybrid"
             seriesName="MSFT"
             data={chartData}
@@ -42,6 +42,6 @@ class MyChart extends Component {
 	}
 }
 
-MyChart = fitWidth(MyChart);
+CandleChart = fitWidth(CandleChart);
 
-export default MyChart;
+export default CandleChart;
