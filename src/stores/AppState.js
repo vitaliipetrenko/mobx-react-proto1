@@ -77,6 +77,7 @@ class AppState {
   }
 
   @action clearItems() {
+    this.chartData = []
     this.items = []
     this.item = {}
   }

@@ -21,7 +21,6 @@ export default function DataWrapper(Component) {
 			// let pathname = this.props.match.url
 			// let id = this.props.match.id ? this.props.match.id : null
 			// this.store.fetchData(pathname, id)
-			this.props.store.fetchChartData()
 		}
 
 		componentWillUnmount() {
@@ -32,7 +31,8 @@ export default function DataWrapper(Component) {
 
 		pollData() {
 			// this.props.store.fetchData();
-			this.timer = setTimeout(() => { 
+			this.timer = setTimeout(() => {
+				this.props.store.fetchChartData()
 				this.props.store.fetchData(() => this.pollData())
 			 },
 			this.timeout);
