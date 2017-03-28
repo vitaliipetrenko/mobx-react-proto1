@@ -15,8 +15,28 @@ class AppState {
   //   this.item = {};
   // }
 
-  @action async fetchData(next = () => {}) {
-    const APIURL = 'http://localhost:3000/?limit=1000';
+
+  async fetchData(pathname, id) {
+    const limit = 300;
+    const offset = 300;
+    const APIURL = `http://localhost:3000/?limit=${limit}`;
+
+    // let {data} = await axios.get(`https://jsonplaceholder.typicode.com${pathname}`)
+    let {data} = await axios.get(APIURL)
+    // data = data.results;
+
+    // data.length > 0 ? this.setData(data) : this.setSingle(data)
+    this.setOrders(data || []);
+  }
+
+  async fetchNextData(pathname, id) {
+    const limit = 300;
+    const offset = 300;
+    const APIURL = `http://localhost:3000/?limit=${limit}&offset=${offset}`;
+    
+    // let {data} = await axios.get(`https://jsonplaceholder.typicode.com${pathname}`)
+    let {data} = await axios.get(APIURL)
+    // data = data.results;
 
     try {
       let {data} = await axios.get(APIURL)

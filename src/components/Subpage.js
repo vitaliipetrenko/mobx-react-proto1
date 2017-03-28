@@ -6,31 +6,9 @@ import { Match, Link } from 'react-router-dom'
 import Protected from './Protected'
 import DataWrapper from './DataWrapper'
 
-import { defaultCellRangeRenderer, Grid } from 'react-virtualized'
+import { defaultCellRangeRenderer, Grid, AutoSizer } from 'react-virtualized'
 
 import 'react-virtualized/styles.css'
-
-const list = [
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125],
-  ['Brian Vaughn', 'Software Engineer', 'San Jose', 'CA', 95125]
-  // And so on...
-];
-
-// const cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
-//   return (
-//     <div
-//       key={key}
-//       style={style}
-//     >
-//       {list[rowIndex][columnIndex]}
-//     </div>
-//   )
-// }
 
 @DataWrapper
 @observer
@@ -45,10 +23,27 @@ export default class Subpage extends Component {
     const rowItem = items[rowIndex];
     const keys = Object.keys(rowItem);
 
-    // console.log('rerender row');
-
     return <span key={key} style={style}>{rowItem[keys[columnIndex]]}</span>
   };
+
+  _getColumnWidth = ({ index }) => {
+    switch (index) {
+      case 0:
+        return 310
+      case 1:
+        return 100
+      case 2:
+        return 100
+      case 3:
+        return 100
+      default:
+        return 70
+    }
+  }
+  onRend = (props) =>{
+    console.log('rowOverscanStopIndex :', props.rowOverscanStopIndex);
+    
+  }
 
 	render() {
     const {items} = this.props.store;
@@ -57,16 +52,22 @@ export default class Subpage extends Component {
 			<div className="page posts">
 				<h1>Grid</h1>
 				<hr />
-				{/* <CustomizedGrid cellRenderer={cellRenderer} /> */}
-        {items.length && <Grid
-          cellRenderer={this.cellRenderer(items)}
-          columnCount={Object.keys(items[0]).length}
-          columnWidth={100}
-          height={300}
-          rowCount={items.length}
-          rowHeight={30}
-          width={900}
-        />}
+        {items.length && 
+          <AutoSizer>
+            {({ width, height }) => (
+              <Grid
+                onSectionRendered={this.onRend}
+                cellRenderer={this.cellRenderer(items)}
+                columnCount={Object.keys(items[0]).length}
+                columnWidth={this._getColumnWidth}
+                height={height}
+                rowCount={items.length}
+                rowHeight={30}
+                width={width}
+              />
+            )}
+          </AutoSizer>
+        }
 			</div>
 		)
 	}
