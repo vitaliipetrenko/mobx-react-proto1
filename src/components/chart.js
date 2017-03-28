@@ -17,7 +17,7 @@ class MyChart extends Component {
     const chartData = mobx.toJS(this.props.chartData)
     if (chartData[chartData.length - 1]) {
       return (
-        <ChartCanvas ratio={1} width={1200} height={800}
+        <ChartCanvas ratio={1} width={950} height={300}
             margin={{ left: 50, right: 50, top:10, bottom: 30 }} type="hybrid"
             seriesName="MSFT"
             data={chartData}

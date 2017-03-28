@@ -54,6 +54,7 @@ export default class Subpage extends Component {
 			<div className="page posts">
         <h1>Chart</h1>
           <MyChart chartData={chartData}/>
+          <MyChart chartData={chartData}/>
 				<h1>Grid</h1>
 				<hr />
         {items.length &&
