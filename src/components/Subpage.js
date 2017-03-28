@@ -42,7 +42,7 @@ export default class Subpage extends Component {
   }
   onRend = (props) =>{
     console.log('rowOverscanStopIndex :', props.rowOverscanStopIndex);
-    
+
   }
 
 	render() {
@@ -52,7 +52,7 @@ export default class Subpage extends Component {
 			<div className="page posts">
 				<h1>Grid</h1>
 				<hr />
-        {items.length && 
+        {items.length &&
           <AutoSizer>
             {({ width, height }) => (
               <Grid
