@@ -24,9 +24,9 @@ export default class App extends Component {
 		const { authenticated, authenticating, timeToRefresh, refreshToken } = this.store
 		return (
 			<Router>
-				<Provider store={this.store}>
+				<Provider store={this.props.store}>
 					<div className="wrapper">
-						{/* <DevTools /> */}
+						<DevTools />
 						<TopBar />
 
 						<Route

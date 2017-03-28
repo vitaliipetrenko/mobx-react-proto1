@@ -1,5 +1,6 @@
 import React, { Component, PropTypes, PureComponent } from 'react'
 import { inject, observer } from 'mobx-react'
+import {computed} from 'mobx';
 import { Match, Link } from 'react-router-dom'
 
 import Protected from './Protected'
@@ -10,6 +11,7 @@ import { defaultCellRangeRenderer, Grid, AutoSizer } from 'react-virtualized'
 import 'react-virtualized/styles.css'
 
 @DataWrapper
+@observer
 export default class Subpage extends Component {
   static propTypes = {
     store: PropTypes.shape({
@@ -17,11 +19,10 @@ export default class Subpage extends Component {
     })
   };
 
-  cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
-    const {items} = this.props.store;
+  cellRenderer = (items) => ({ columnIndex, key, rowIndex, style }) => {
     const rowItem = items[rowIndex];
     const keys = Object.keys(rowItem);
-    // console.log(rowItem[keys[columnIndex]]);
+
     return <span key={key} style={style}>{rowItem[keys[columnIndex]]}</span>
   };
 
@@ -46,18 +47,17 @@ export default class Subpage extends Component {
 
 	render() {
     const {items} = this.props.store;
-
+    // console.log('subpage render');
 		return (
 			<div className="page posts">
 				<h1>Grid</h1>
 				<hr />
-				 {/*<CustomizedGrid cellRenderer={cellRenderer} /> */}
         {items.length && 
           <AutoSizer>
             {({ width, height }) => (
               <Grid
                 onSectionRendered={this.onRend}
-                cellRenderer={this.cellRenderer}
+                cellRenderer={this.cellRenderer(items)}
                 columnCount={Object.keys(items[0]).length}
                 columnWidth={this._getColumnWidth}
                 height={height}
@@ -66,9 +66,8 @@ export default class Subpage extends Component {
                 width={width}
               />
             )}
-        </AutoSizer>
-      }
-
+          </AutoSizer>
+        }
 			</div>
 		)
 	}

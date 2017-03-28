@@ -4,16 +4,15 @@ const option = require('./option');
 const utils = require('./utils');
 
 const CHANGE_PERIOD = 50;
-const { createOptionOrdersPool, createOptionOrder } = option;
+const { createOptionOrdersPool, createOptionOrder, modifyOptionOrdersPool } = option;
+let ordersPool = createOptionOrdersPool(1000);
 
-const ordersPool = createOptionOrdersPool(10000);
-
-// let timer = setTimeout(function intervalFn() {
-//   const i = utils.rndInt(ordersPool.length);
-//   ordersPool[i] = createOptionOrder();
-
-//   timer = setTimeout(intervalFn, CHANGE_PERIOD);
-// }, CHANGE_PERIOD);
+let timer = setTimeout(function intervalFn() {
+  // const i = utils.rndInt(ordersPool.length);
+  // ordersPool[i] = createOptionOrder();
+  ordersPool = modifyOptionOrdersPool(ordersPool);
+  timer = setTimeout(intervalFn, CHANGE_PERIOD);
+}, 250);
 
 const app = express();
 
@@ -24,14 +23,11 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  const { offset = 0, limit = 100 } = req.query;
-  // console.log(limit);
-  // console.log(createOptionOrdersPool(limit));
-  
-  const data = ordersPool.slice((+offset), (+offset) + (+limit));
+  let { offset, limit } = req.query;
+  offset = parseInt(offset, 10) || 0;
+  limit = parseInt(limit, 10) || 200;
 
-  // const ordersPool = createOptionOrdersPool(+limit);
-  // const data = ordersPool;
+  const data = ordersPool.slice(offset, offset + limit);
 
   res.send(data);
 });

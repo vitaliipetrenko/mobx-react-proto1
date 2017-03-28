@@ -1,5 +1,6 @@
-import { observable, action } from 'mobx'
+import { observable, action, runInAction } from 'mobx'
 import axios from 'axios'
+import OrderModel from '../models/OrderModel';
 
 class AppState {
   @observable authenticated = false;
@@ -8,16 +9,17 @@ class AppState {
   @observable item = {};
 
   // constructor() {
-  //   this.authenticated = false
-  //   this.authenticating = false
-  //   this.items = []
-  //   this.item = {}
+  //   this.authenticated = false;
+  //   this.authenticating = false;
+  //   this.items = [];
+  //   this.item = {};
   // }
+
 
   async fetchData(pathname, id) {
     const limit = 300;
     const offset = 300;
-    const APIURL = 'http://localhost:3000/';
+    const APIURL = `http://localhost:3000/?limit=${limit}`;
 
     // let {data} = await axios.get(`https://jsonplaceholder.typicode.com${pathname}`)
     let {data} = await axios.get(APIURL)
@@ -36,12 +38,21 @@ class AppState {
     let {data} = await axios.get(APIURL)
     // data = data.results;
 
-    // data.length > 0 ? this.setData(data) : this.setSingle(data)
-    this.setOrders(data || []);
+    try {
+      let {data} = await axios.get(APIURL)
+      // this.setOrders(data);
+      runInAction(() => this.items.replace(data))
+    } catch (e) {
+      // this.setOrders([]);
+      runInAction(() => this.items.replace([]))
+    }
+
+    next();
   }
 
   @action setOrders(data) {
-    this.items = [].concat(data);
+    // this.items = data.map(item => new OrderModel(item));
+    this.items.replace(data);
   }
 
   @action setData(data) {
