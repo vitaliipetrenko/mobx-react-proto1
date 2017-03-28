@@ -21,6 +21,11 @@ export default function DataWrapper(Component) {
 			// let pathname = this.props.match.url
 			// let id = this.props.match.id ? this.props.match.id : null
 			// this.store.fetchData(pathname, id)
+			let pathname = this.props.match.url
+			let id = this.props.match.id ? this.props.match.id : null
+			
+			this.store.fetchData(pathname, id)
+			this.store.fetchChartData()
 		}
 
 		componentWillUnmount() {
