@@ -5,9 +5,6 @@ import { Match, Link } from 'react-router-dom'
 
 import Protected from './Protected'
 import DataWrapper from './DataWrapper'
-import CandleChart from './chart'
-import AreaChart from './chart1'
-import LineChart from './chart2'
 
 import { defaultCellRangeRenderer, Grid, AutoSizer } from 'react-virtualized'
 
@@ -50,18 +47,9 @@ export default class Subpage extends Component {
   }
 
 	render() {
-    // console.log('subpage render');
     const {items, chartData} = this.props.store;
 		return (
 			<div className="page posts">
-        <h1>Charts</h1>
-        {/*
-          <CandleChart chartData={chartData}/>
-          <AreaChart chartData={chartData}/>
-          <LineChart chartData={chartData}/>
-        */}
-				<h1>Grid</h1>
-				<hr />
         {items.length &&
           <AutoSizer>
             {({ width, height }) => (
