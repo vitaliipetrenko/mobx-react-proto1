@@ -41,6 +41,11 @@ export default class App extends Component {
 						/>
 						<Route
 						  exact
+						  path="/grids"
+						  render={(props) => <LazyRoute {...props} component={import('./Grids')} />}
+						/>
+						<Route
+						  exact
 						  path="/posts/:id"
 						  render={(props) => <LazyRoute {...props} component={import('./Subitem')} />}
 						/>
@@ -50,9 +55,6 @@ export default class App extends Component {
 						  render={(props) => <LazyRoute {...props} component={import('./Login')} />}
 						/>
 						{!!(timeToRefresh && timeToRefresh <= 4) && this.store.refreshToken()}
-					<footer>
-						bla bla bla...
-					</footer>
 					</div>
 				</Provider>
 			</Router>

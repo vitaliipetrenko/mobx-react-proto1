@@ -14,6 +14,7 @@ const tickers = getTickersPool();
 
 function createOptionOrder(ticker = tickers[rndInt(tickers.length)], stockPrice = 100) {
   return {
+    // id: uuidV1().substr(0, 15),
     id: uuidV1(),
     ticker,
     price: randomPrice(stockPrice * 0.15, 0.03, 2),
