@@ -50,6 +50,16 @@ export default class App extends Component {
 						/>
 						<Route
 						  exact
+						  path="/charts"
+						  render={(props) => <LazyRoute {...props} component={import('./ChartsPage')} />}
+						/>
+						<Route
+						  exact
+						  path="/multi-charts"
+						  render={(props) => <LazyRoute {...props} component={import('./MultiChartsPage')} />}
+						/>
+						<Route
+						  exact
 						  path="/posts/:id"
 						  render={(props) => <LazyRoute {...props} component={import('./Subitem')} />}
 						/>
