@@ -5,14 +5,14 @@ import { AppContainer } from 'react-hot-loader'
 import App from './components/App'
 import AppState from './stores/AppState'
 
-const appState = new AppState();
+const appState = new AppState()
 
 ReactDOM.render(
   <AppContainer>
     <App store={appState} />
   </AppContainer>,
   document.getElementById('root')
-);
+)
 
 // Hot Module Replacement API
 if (module.hot) {
@@ -23,6 +23,6 @@ if (module.hot) {
       </AppContainer>
       ,
       document.getElementById('root')
-    );
-  });
+    )
+  })
 }

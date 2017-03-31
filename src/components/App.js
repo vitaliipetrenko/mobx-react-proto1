@@ -26,7 +26,6 @@ export default class App extends Component {
 			<Router>
 				<Provider store={this.props.store}>
 					<div className="wrapper">
-						<DevTools />
 						<TopBar />
 
 						<Route
