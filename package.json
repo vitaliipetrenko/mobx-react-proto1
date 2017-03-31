@@ -7,7 +7,8 @@
     "start": "node devserver.js",
     "build": "rimraf ./dist && webpack --config webpack.config.production.js",
     "preview": "http-server ./dist -p 1234 -c-1",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod": "npm run build && npm run preview"
   },
   "keywords": [
     "React",

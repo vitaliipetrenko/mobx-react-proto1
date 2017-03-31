@@ -55,11 +55,9 @@ export default class Subpage extends Component {
 		return (
 			<div className="page posts">
         <h1>Charts</h1>
-        {/*
           <CandleChart chartData={chartData}/>
           <AreaChart chartData={chartData}/>
           <LineChart chartData={chartData}/>
-        */}
 				<h1>Grid</h1>
 				<hr />
         {items.length &&
