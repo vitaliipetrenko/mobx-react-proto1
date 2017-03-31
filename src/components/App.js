@@ -46,6 +46,11 @@ export default class App extends Component {
 						/>
 						<Route
 						  exact
+						  path="/grid"
+						  render={(props) => <LazyRoute {...props} component={import('./Grid')} />}
+						/>
+						<Route
+						  exact
 						  path="/posts/:id"
 						  render={(props) => <LazyRoute {...props} component={import('./Subitem')} />}
 						/>
