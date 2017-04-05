@@ -1054,6 +1054,10 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
+bootstrap@^3.3.7:
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
+
 brace-expansion@^1.0.0:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.6.tgz#7197d7eaa9b87e648390ea61fc66c84427420df9"
@@ -5098,6 +5102,16 @@ rc@^1.1.2, rc@^1.1.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-data-grid-addons@^2.0.24:
+  version "2.0.24"
+  resolved "https://registry.yarnpkg.com/react-data-grid-addons/-/react-data-grid-addons-2.0.24.tgz#0e5a5ee43b92e4d1f23772ad7fecb7735f9ea485"
+  dependencies:
+    react-data-grid "^2.0.24"
+
+react-data-grid@^2.0.24:
+  version "2.0.24"
+  resolved "https://registry.yarnpkg.com/react-data-grid/-/react-data-grid-2.0.24.tgz#12371cb25e80243bd27f41d29dd4a7dd2b1f78a6"
 
 react-deep-force-update@^2.0.1:
   version "2.0.1"
