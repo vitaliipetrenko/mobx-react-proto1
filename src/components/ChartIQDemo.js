@@ -38,7 +38,7 @@ class ChartIQDemo extends Component {
     this.chartData = [...this.props.store.chartData]
   }
   componentDidMount() {
-    const stxx =  new CIQ.ChartEngine({
+    const stxx = new CIQ.ChartEngine({
       container: this.chartContainer,
       layout:{crosshair:true, "chartType": "candle","candleWidth": 8}
     })
