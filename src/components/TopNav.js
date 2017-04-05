@@ -24,6 +24,10 @@ export default class TopNav extends Component {
 				{authenticated && <ActiveLink to="/posts">People</ActiveLink>}
 				{authenticated && <ActiveLink to="/grids">4 Grids</ActiveLink>}
 				{authenticated && <ActiveLink to="/grid">1 Grid</ActiveLink>}
+				{<ActiveLink to="/charts">Charts</ActiveLink>}
+				{<ActiveLink to="/multi-charts">MultiCharts</ActiveLink>}
+				{<ActiveLink to="/chartiq">ChartIQ</ActiveLink>}
+				{<ActiveLink to="/multi-chartiq">Multiple ChartIQ</ActiveLink>}
 				{authenticated && <ActiveLink to="/data-grid">Data Grid</ActiveLink>}
 				{authenticated && <ActiveLink to="/ag-grid">Ag Grid</ActiveLink>}
 			</nav>
