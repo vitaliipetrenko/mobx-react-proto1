@@ -60,6 +60,16 @@ export default class App extends Component {
 						/>
 						<Route
 						  exact
+						  path="/chartiq"
+						  render={(props) => <LazyRoute {...props} component={import('./ChartIQDemo')} />}
+						/>
+						<Route
+						  exact
+						  path="/multi-chartiq"
+						  render={(props) => <LazyRoute {...props} component={import('./MultipleChartIQ')} />}
+						/>
+						<Route
+						  exact
 						  path="/posts/:id"
 						  render={(props) => <LazyRoute {...props} component={import('./Subitem')} />}
 						/>

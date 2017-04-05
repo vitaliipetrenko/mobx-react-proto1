@@ -37,6 +37,12 @@ class AppState {
     let {data} = await axios.get(APIURL)
     data.forEach((el) => {
       el.date = new Date(el.date)
+      el.Date = new Date(el.date)
+      el.Open = el.open
+      el.Close = el.close
+      el.High = el.high
+      el.Low = el.low
+      el.Volume = el.volume
     })
     runInAction(() => this.chartData.replace(data))
   }
