@@ -4,12 +4,14 @@
 @import 'base/reset';
 @import 'base/base';
 @import 'base/typography';
+@import 'base/stx-chart.scss';
 
 // Components
 
 @import 'components/topbar';
 @import 'components/topnav';
 @import 'components/page';
+@import 'components/chartIQ.scss';
 
 // Pages
 
