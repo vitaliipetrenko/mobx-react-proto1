@@ -72,7 +72,7 @@ export default class App extends Component {
 						  exact
 						  path="/multi-chartiq"
 						  render={(props) => <LazyRoute {...props} component={import('./MultipleChartIQ')} />}
-            
+            />
 						<Route
 						  exact
 						  path="/posts/:id"

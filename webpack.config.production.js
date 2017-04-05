@@ -4,6 +4,7 @@ var precss = require('precss');
 var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -33,14 +34,18 @@ module.exports = {
             test: /\.scss|css$/i,
             loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader?sourceMap']),
         }, {
-            test: /\.(jpe?g|png|gif|svg)$/i,
+            test: /\.(jpe?g|png|gif|svg|woff|woff2|eot|ttf)$/i,
             loaders: [
-                'file-loader?hash=sha512&digest=hex&name=assets/[hash].[ext]',
-                'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                'file-loader?hash=sha512&digest=hex&name=assets/[hash].[ext]'
             ]
         }]
     },
     plugins: [
+        new CopyWebpackPlugin([
+            // {output}/file.txt
+            { from: 'src/components/chartiq.js', to: 'src/components/chartiq.js' },
+            { from: 'src/components/addOns.js', to: 'src/components/addOns.js' }
+        ]),
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')
