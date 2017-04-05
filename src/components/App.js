@@ -6,6 +6,9 @@ import DevTools from 'mobx-react-devtools'
 
 import TopBar from './TopBar'
 
+import '../../node_modules/ag-grid/dist/styles/ag-grid.css'
+import '../../node_modules/ag-grid/dist/styles/theme-fresh.css'
+
 @observer
 export default class App extends Component {
 	constructor(props) {
@@ -52,6 +55,11 @@ export default class App extends Component {
 						  exact
 						  path="/data-grid"
 						  render={(props) => <LazyRoute {...props} component={import('./DataGrid')} />}
+						/>
+						<Route
+						  exact
+						  path="/ag-grid"
+						  render={(props) => <LazyRoute {...props} component={import('./agGrid')} />}
 						/>
 						<Route
 						  exact

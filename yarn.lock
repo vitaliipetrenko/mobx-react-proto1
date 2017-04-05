@@ -37,6 +37,14 @@ acorn@^4.0.3, acorn@^4.0.4:
   version "4.0.11"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.11.tgz#edcda3bd937e7556410d42ed5860f67399c794c0"
 
+ag-grid-react@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/ag-grid-react/-/ag-grid-react-9.0.0.tgz#11d2bd4dae918beca0f1fd430a420e06959cb34e"
+
+ag-grid@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/ag-grid/-/ag-grid-9.0.0.tgz#ec63fb5decfad8fe8260d0c85daa1ebe64053583"
+
 ajv-keywords@^1.0.0, ajv-keywords@^1.1.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
