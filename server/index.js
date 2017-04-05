@@ -1,7 +1,7 @@
 // const request = require('superagent');
 const express = require('express');
 const option = require('./option');
-const createChartPool = require('./chart');
+const { createChartPool, updateChartData } = require('./chart');
 const utils = require('./utils');
 
 const CHANGE_PERIOD = 50;
@@ -41,7 +41,13 @@ app.get('/', (req, res) => {
   res.send(data);
 });
 
+let chartData = createChartPool(true);
 app.get('/chart', (req, res) => {
+  chartData = updateChartData(chartData)
+
+  res.send(chartData);
+});
+app.get('/chart-random', (req, res) => {
   const data = createChartPool();
 
   res.send(data);

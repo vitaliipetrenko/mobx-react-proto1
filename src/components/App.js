@@ -48,11 +48,31 @@ export default class App extends Component {
 						  path="/grid"
 						  render={(props) => <LazyRoute {...props} component={import('./Grid')} />}
 						/>
-						<Route
+            <Route
 						  exact
 						  path="/data-grid"
 						  render={(props) => <LazyRoute {...props} component={import('./DataGrid')} />}
 						/>
+						<Route
+						  exact
+						  path="/charts"
+						  render={(props) => <LazyRoute {...props} component={import('./ChartsPage')} />}
+						/>
+						<Route
+						  exact
+						  path="/multi-charts"
+						  render={(props) => <LazyRoute {...props} component={import('./MultiChartsPage')} />}
+						/>
+						<Route
+						  exact
+						  path="/chartiq"
+						  render={(props) => <LazyRoute {...props} component={import('./ChartIQDemo')} />}
+						/>
+						<Route
+						  exact
+						  path="/multi-chartiq"
+						  render={(props) => <LazyRoute {...props} component={import('./MultipleChartIQ')} />}
+            
 						<Route
 						  exact
 						  path="/posts/:id"

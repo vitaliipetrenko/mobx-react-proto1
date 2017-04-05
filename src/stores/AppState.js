@@ -32,13 +32,19 @@ class AppState {
   }
 
   async fetchChartData() {
-    const APIURL = 'http://localhost:3000/chart';
+    const APIURL = window.location.search.indexOf('random') >= 0 ? 'http://localhost:3000/chart-random' : 'http://localhost:3000/chart';
 
     let {data} = await axios.get(APIURL)
-    data.map((el) => {
-      el.data = new Date(el.data)
+    data.forEach((el) => {
+      el.date = new Date(el.date)
+      el.Date = new Date(el.date)
+      el.Open = el.open
+      el.Close = el.close
+      el.High = el.high
+      el.Low = el.low
+      el.Volume = el.volume
     })
-    this.setChartData(data || []);
+    runInAction(() => this.chartData.replace(data))
   }
 
   async fetchNextData(pathname, id) {
