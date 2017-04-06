@@ -66,6 +66,7 @@ class CandleChart extends Component {
     const chartData = this.props.chartData.slice()
     
     if (chartData.length > 0) {
+      chartData[chartData.length - 1].close
       return (
         <ChartCanvas ratio={1} width={this.props.width} height={this.props.height}
             margin={{left: 80, right: 80, top:10, bottom: 30}} type="hybrid"

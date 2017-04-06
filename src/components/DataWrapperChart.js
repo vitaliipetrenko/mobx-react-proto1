@@ -32,9 +32,8 @@ export default function DataWrapper(Component) {
 
 		pollData() {
 			// this.props.store.fetchData();
-			this.timer = setTimeout(() => {
+			this.timer = setInterval(() => {
 				this.props.store.updateChart()
-				this.props.store.fetchData(() => this.pollData())
 			 },
 			this.timeout);
 		}

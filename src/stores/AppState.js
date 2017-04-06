@@ -73,7 +73,19 @@ class AppState {
     this.items.replace(data);
   }
   @action setChartData(data) {
-    this.chartData = [].concat(data);
+    this.chartData.replace(data);
+  }
+  @action updateChart() {
+    const chartData = this.chartData
+    if (chartData.length) {
+      const last = chartData[chartData.length - 1]
+      let currentMiddle = last.open
+      let close = Math.random() < 0.5 ? last.open * 0.99 : last.open * 1.01
+      last.close = close
+      last.high = Math.max(currentMiddle, close) * 1.035
+      last.low = Math.min(currentMiddle, close) * 0.984
+      last.volume = last.volume + (Math.random() * 10)
+    }
   }
 
   @action setData(data) {

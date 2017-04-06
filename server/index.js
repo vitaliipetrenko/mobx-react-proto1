@@ -41,11 +41,10 @@ app.get('/', (req, res) => {
   res.send(data);
 });
 
-let chartData = createChartPool(true);
 app.get('/chart', (req, res) => {
-  chartData = updateChartData(chartData)
+  const data = createChartPool();
 
-  res.send(chartData);
+  res.send(data);
 });
 app.get('/chart-random', (req, res) => {
   const data = createChartPool();
