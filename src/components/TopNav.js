@@ -29,6 +29,7 @@ export default class TopNav extends Component {
 				{<ActiveLink to="/chartiq">ChartIQ</ActiveLink>}
 				{<ActiveLink to="/multi-chartiq">Multiple ChartIQ</ActiveLink>}
 				{authenticated && <ActiveLink to="/data-grid">Data Grid</ActiveLink>}
+				{authenticated && <ActiveLink to="/ag-grid">Ag Grid</ActiveLink>}
 			</nav>
 		)
 	}
