@@ -83,6 +83,16 @@ export default class App extends Component {
             />
 						<Route
 						  exact
+						  path="/stockchartx"
+						  render={(props) => <LazyRoute {...props} component={import('./StockChartXPage')} />}
+            />
+						<Route
+						  exact
+						  path="/multi-stockchartx"
+						  render={(props) => <LazyRoute {...props} component={import('./MultiStockChartXPage')} />}
+            />
+						<Route
+						  exact
 						  path="/posts/:id"
 						  render={(props) => <LazyRoute {...props} component={import('./Subitem')} />}
 						/>

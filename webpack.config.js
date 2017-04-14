@@ -3,6 +3,7 @@ var webpack = require("webpack");
 var precss = require("precss");
 var autoprefixer = require("autoprefixer");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: [
@@ -52,6 +53,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new CopyWebpackPlugin([
+            { from: 'src/view', to: 'view' },
+            { from: 'src/locales', to: 'locales' }
+        ]),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({ hash: false, template: "./index.hbs" }),
