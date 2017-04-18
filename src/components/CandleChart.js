@@ -5,9 +5,10 @@ import { ChartCanvas, Chart, series, scale, coordinates, tooltip, axes, indicato
 import { extent } from 'd3-array'
 import { format } from "d3-format"
 import { timeFormat } from "d3-time-format"
+import { scaleTime } from 'd3-scale'
  
 var { CandlestickSeries, BarSeries, LineSeries, AreaSeries } = series;
-let { discontinuousTimeScaleProvider } = scale;
+let { discontinuousTimeScaleProvider, defaultScaleProvider } = scale;
 let { CrossHairCursor, MouseCoordinateX, MouseCoordinateY, CurrentCoordinate, EdgeIndicator } = coordinates;
 let { XAxis, YAxis } = axes;
 let { OHLCTooltip, MovingAverageTooltip } = tooltip;
@@ -74,7 +75,7 @@ class CandleChart extends Component {
             data={chartData}
             calculator={[ha, ema20, ema50, smaVolume50]}
             xAccessor={d => d.date}
-            xScaleProvider={discontinuousTimeScaleProvider}
+            xScale={scaleTime()}
             xExtents={ext}>
 
           <Chart id={1}

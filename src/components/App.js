@@ -88,6 +88,16 @@ export default class App extends Component {
             />
 						<Route
 						  exact
+						  path="/highstock"
+						  render={(props) => <LazyRoute {...props} component={import('./HighStockChartPage')} />}
+						/>
+						<Route
+						  exact
+						  path="/multi-highstock"
+						  render={(props) => <LazyRoute {...props} component={import('./MultiHighStockChartPage')} />}
+						/>
+						<Route
+						  exact
 						  path="/multi-stockchartx"
 						  render={(props) => <LazyRoute {...props} component={import('./MultiStockChartXPage')} />}
             />

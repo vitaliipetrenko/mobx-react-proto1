@@ -10,7 +10,7 @@ class StockChartXComponent extends Component {
       this.container = container
     }
     this.filled = false
-    autorun(() => {
+    this.disposer = autorun(() => {
       if (this.props.store.chartData.length > 0) {
         if (!this.filled) {
           this.filled = true
@@ -51,7 +51,9 @@ class StockChartXComponent extends Component {
     this.chart.updateIndicators()
     this.chart.setNeedsUpdate(true)
   }
-
+  componentWillUnmount() {
+    this.disposer && this.disposer()
+  }
   componentDidMount() {
     var chart = new StockChartX.Chart({
         container: this.container,
@@ -71,6 +73,7 @@ class StockChartXComponent extends Component {
             company: "Google Inc.",
             exchange: "NASDAQ"
           }
+          chart.timeInterval = StockChartX.TimeSpan.MILLISECONDS_IN_HOUR;
       })
       .catch(function(error) {
           StockChartX.UI.Notification.error(error.message);

@@ -28,6 +28,8 @@ export default class TopNav extends Component {
 				{<ActiveLink to="/multi-charts">MultiCharts</ActiveLink>}
 				{<ActiveLink to="/chartiq">ChartIQ</ActiveLink>}
 				{<ActiveLink to="/multi-chartiq">Multiple ChartIQ</ActiveLink>}
+				<ActiveLink to="/highstock">Highstock</ActiveLink>
+				<ActiveLink to="/multi-highstock">Multi Highstock</ActiveLink>
 				<ActiveLink to="/stockchartx">StockChartX</ActiveLink>
 				<ActiveLink to="/multi-stockchartx">Multiple StockChartX</ActiveLink>
 				{authenticated && <ActiveLink to="/data-grid">Data Grid</ActiveLink>}
