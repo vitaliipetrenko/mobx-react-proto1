@@ -22,6 +22,10 @@ const DraggableContainer = DraggableHeader.DraggableContainer;
 import 'bootstrap/dist/css/bootstrap.css'
 
 // import 'react-virtualized/styles.css'
+const { Row } = ReactDataGrid
+
+@observer
+class RowRenderer extends Row {}
 
 @DataWrapper
 @observer
@@ -118,7 +122,8 @@ export default class DataGrid extends Component {
                   columns={this.state.columns}
                   rowGetter={this.rowGetter}
                   rowsCount={this._rows.length}
-                  minHeight={300} 
+                  minHeight={300}
+                  rowRenderer={RowRenderer}
                 />
               </DraggableContainer>
             </div>
@@ -129,7 +134,8 @@ export default class DataGrid extends Component {
                   columns={this.state.columns}
                   rowGetter={this.rowGetter}
                   rowsCount={this._rows.length}
-                  minHeight={300} 
+                  minHeight={300}
+                  rowRenderer={RowRenderer}
                 />
               </DraggableContainer>
             </div>
@@ -140,7 +146,8 @@ export default class DataGrid extends Component {
                   columns={this.state.columns}
                   rowGetter={this.rowGetter}
                   rowsCount={this._rows.length}
-                  minHeight={300} 
+                  minHeight={300}
+                  rowRenderer={RowRenderer}
                 />
               </DraggableContainer>
             </div>
@@ -151,7 +158,8 @@ export default class DataGrid extends Component {
                   columns={this.state.columns}
                   rowGetter={this.rowGetter}
                   rowsCount={this._rows.length}
-                  minHeight={300} 
+                  minHeight={300}
+                  rowRenderer={RowRenderer}
                 />
               </DraggableContainer>
             </div>

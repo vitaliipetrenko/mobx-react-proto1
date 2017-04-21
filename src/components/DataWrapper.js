@@ -13,8 +13,7 @@ export default function DataWrapper(Component) {
 		}
 
 		componentWillMount() {
-			this.pollData();
-			this.props.store.fetchChartData()
+			this.props.store.fetchData(() => this.pollData());
 		}
 
 		componentDidMount() {
@@ -33,8 +32,7 @@ export default function DataWrapper(Component) {
 		pollData() {
 			// this.props.store.fetchData();
 			this.timer = setTimeout(() => {
-				this.props.store.updateChart()
-				this.props.store.fetchData(() => this.pollData())
+				this.props.store.updateRandomData(() => this.pollData())
 			 },
 			this.timeout);
 		}

@@ -113,6 +113,24 @@ class AppState {
     })
   }
 
+  @action updateRandomData (next) {
+    if (this.items.length) {
+      this.items[0].price = (Math.random() * 100).toFixed(2)
+      this.items[0].volume = (Math.random() * 1000).toFixed(2)
+
+      this.items[2].price = (Math.random() * 100).toFixed(2)
+      this.items[2].volume = (Math.random() * 1000).toFixed(2)
+
+      this.items[3].price = (Math.random() * 100).toFixed(2)
+      this.items[3].volume = (Math.random() * 1000).toFixed(2)
+
+      this.items[5].price = (Math.random() * 100).toFixed(2)
+      this.items[5].volume = (Math.random() * 1000).toFixed(2)
+    }
+
+    next()
+  }
+
 }
 
 export default AppState;
