@@ -73,16 +73,6 @@ export default class App extends Component {
 						/>
 						<Route
 						  exact
-						  path="/chartiq"
-						  render={(props) => <LazyRoute {...props} component={import('./ChartIQDemo')} />}
-						/>
-						<Route
-						  exact
-						  path="/multi-chartiq"
-						  render={(props) => <LazyRoute {...props} component={import('./MultipleChartIQ')} />}
-            />
-						<Route
-						  exact
 						  path="/stockchartx"
 						  render={(props) => <LazyRoute {...props} component={import('./StockChartXPage')} />}
             />
@@ -110,6 +100,11 @@ export default class App extends Component {
 						  exact
 						  path="/login"
 						  render={(props) => <LazyRoute {...props} component={import('./Login')} />}
+						/>
+						<Route
+							exact
+							path="/mosaic-page"
+							render={(props) => <LazyRoute {...props} component={import('./MosaicPage')} />}
 						/>
 						{!!(timeToRefresh && timeToRefresh <= 4) && this.store.refreshToken()}
 					</div>

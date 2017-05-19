@@ -23,3 +23,9 @@
 .scxToolbar {
   display: none;
 }
+.step {
+  flex: 1;
+}
+.mosaic-root {
+  height: calc(100% - 50px) !important;
+}

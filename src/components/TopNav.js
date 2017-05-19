@@ -21,19 +21,17 @@ export default class TopNav extends Component {
 		return (
 			<nav>
 				<ActiveLink activeOnlyWhenExact={true} to="/">Home</ActiveLink>
-				{authenticated && <ActiveLink to="/posts">People</ActiveLink>}
 				{authenticated && <ActiveLink to="/grids">4 Grids</ActiveLink>}
 				{authenticated && <ActiveLink to="/grid">1 Grid</ActiveLink>}
 				{<ActiveLink to="/charts">Charts</ActiveLink>}
 				{<ActiveLink to="/multi-charts">MultiCharts</ActiveLink>}
-				{<ActiveLink to="/chartiq">ChartIQ</ActiveLink>}
-				{<ActiveLink to="/multi-chartiq">Multiple ChartIQ</ActiveLink>}
 				<ActiveLink to="/highstock">Highstock</ActiveLink>
 				<ActiveLink to="/multi-highstock">Multi Highstock</ActiveLink>
 				<ActiveLink to="/stockchartx">StockChartX</ActiveLink>
 				<ActiveLink to="/multi-stockchartx">Multiple StockChartX</ActiveLink>
 				{authenticated && <ActiveLink to="/data-grid">Data Grid</ActiveLink>}
 				{authenticated && <ActiveLink to="/ag-grid">Ag Grid</ActiveLink>}
+				<ActiveLink to="/mosaic-page">Mosaic page</ActiveLink>
 			</nav>
 		)
 	}
