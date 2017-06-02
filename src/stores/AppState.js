@@ -27,8 +27,9 @@ class AppState {
 
     // data.length > 0 ? this.setData(data) : this.setSingle(data)
     this.setOrders(data || []);
-
-    next();
+    if (next) {
+      next();
+    }
   }
 
   async fetchChartData() {

@@ -8,12 +8,12 @@ export default function DataWrapper(Component) {
 	class DataFetcher extends Component {
 		constructor(props) {
 			super(props)
-			this.timeout = 250;
+			this.timeout = 750;
 			// this.store = this.props.store
 		}
 
 		componentWillMount() {
-			this.props.store.fetchData(() => this.pollData());
+			this.props.store.fetchData();
 		}
 
 		componentDidMount() {
