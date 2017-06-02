@@ -6,8 +6,8 @@ import DevTools from 'mobx-react-devtools'
 
 import TopBar from './TopBar'
 
-import '../../node_modules/ag-grid/dist/styles/ag-grid.css'
-import '../../node_modules/ag-grid/dist/styles/theme-fresh.css'
+// import '../../node_modules/ag-grid/dist/styles/ag-grid.css'
+// import '../../node_modules/ag-grid/dist/styles/theme-fresh.css'
 
 @observer
 export default class App extends Component {
@@ -16,7 +16,7 @@ export default class App extends Component {
 		this.store = this.props.store
 	}
 	componentDidMount() {
-		this.authenticate()
+		// this.authenticate()
 
 	}
 	authenticate(e) {
@@ -30,7 +30,6 @@ export default class App extends Component {
 				<Provider store={this.props.store}>
 					<div className="wrapper">
 						<TopBar />
-
 						<Route
 						  exact
 						  path="/"
@@ -104,7 +103,7 @@ export default class App extends Component {
 						<Route
 							exact
 							path="/mosaic-page"
-							render={(props) => <LazyRoute {...props} component={import('./MosaicPage')} />}
+							render={(props) => <LazyRoute {...props} component={import('./MosaicWrapper/MosaicWrapper')} />}
 						/>
 						{!!(timeToRefresh && timeToRefresh <= 4) && this.store.refreshToken()}
 					</div>
