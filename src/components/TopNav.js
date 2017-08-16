@@ -32,6 +32,7 @@ export default class TopNav extends Component {
 				{authenticated && <ActiveLink to="/data-grid">Data Grid</ActiveLink>}
 				{authenticated && <ActiveLink to="/ag-grid">Ag Grid</ActiveLink>}
 				<ActiveLink to="/mosaic-page">Mosaic page</ActiveLink>
+				<ActiveLink to="/test-chart-page">Test Chart</ActiveLink>
 			</nav>
 		)
 	}
