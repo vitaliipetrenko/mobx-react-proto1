@@ -105,6 +105,11 @@ export default class App extends Component {
 							path="/mosaic-page"
 							render={(props) => <LazyRoute {...props} component={import('./MosaicWrapper/MosaicWrapper')} />}
 						/>
+						<Route
+							exact
+							path="/test-chart-page"
+							render={(props) => <LazyRoute {...props} component={import('./TestChartPage')} />}
+						/>
 						{!!(timeToRefresh && timeToRefresh <= 4) && this.store.refreshToken()}
 					</div>
 				</Provider>

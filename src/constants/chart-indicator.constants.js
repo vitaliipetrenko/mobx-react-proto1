@@ -1,0 +1,1 @@
+export const BOLINGER_BAND = 'BOLINGER_BAND'

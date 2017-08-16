@@ -3,13 +3,12 @@ import { inject, observer } from 'mobx-react'
 import {computed} from 'mobx';
 import { Match, Link } from 'react-router-dom'
 
-import Protected from './Protected'
 import DataWrapperChart from './DataWrapperChart'
-import CandleChart from './CandleChart'
-import { AutoSizer } from 'react-virtualized'
+import TestChartComponent from './TestChartComponent'
 
 @DataWrapperChart
-export default class ChartsPage extends Component {
+@observer
+export default class TestChartPage extends Component {
   static propTypes = {
     store: PropTypes.shape({
       chartData: PropTypes.object
@@ -17,10 +16,9 @@ export default class ChartsPage extends Component {
   };
 
 	render() {
-    const { chartData } = this.props.store;
 		return (
 			<div className="page posts">
-        <CandleChart chartData={chartData} width={900} height={480} />
+        <TestChartComponent store={this.props.store} width={1850} height={980} />
 			</div>
 		)
 	}
